@@ -31,14 +31,14 @@
   img{max-width:100%;display:block;}
   button{font-family:inherit; cursor:pointer;}
 
-  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 clamp(16px,4vw,32px); }
 
   /* HEADER */
   header{
     border-bottom: 3px solid var(--ink);
     position:sticky; top:0; background:var(--cream); z-index:50;
   }
-  .headbar{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto; }
+  .headbar{ display:flex; align-items:center; justify-content:space-between; padding:16px clamp(16px,4vw,32px); max-width:1200px; margin:0 auto; }
   .logo{ font-size:32px; letter-spacing:0.03em; }
   html[dir="rtl"] .logo{ font-size:24px; }
   .logo span{ color:var(--brick); }
@@ -74,10 +74,10 @@
   }
   .hero{
     position:relative; z-index:1;
-    padding:72px 24px 56px; max-width:1120px; margin:0 auto;
-    display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center;
+    padding:clamp(48px,7vw,72px) clamp(16px,4vw,32px) clamp(40px,5vw,56px); max-width:1200px; margin:0 auto;
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:clamp(24px,4vw,40px); align-items:center;
   }
-  .hero h1{ font-size:76px; line-height:0.95; }
+  .hero h1{ font-size:clamp(44px,6.2vw,76px); line-height:0.95; }
   html[dir="rtl"] .hero h1{ font-size:48px; line-height:1.15; }
   .hero p.lead{ font-size:18px; max-width:440px; margin-top:18px; color:#3a3830; }
   .hero .ctas{ display:flex; gap:14px; margin-top:28px; }
@@ -116,9 +116,9 @@
   @keyframes marquee-rtl{ from{transform:translateX(0);} to{transform:translateX(50%);} }
 
   /* SECTION HEAD */
-  .sec{ padding:56px 24px; max-width:1120px; margin:0 auto; }
+  .sec{ padding:clamp(40px,5vw,56px) clamp(16px,4vw,32px); max-width:1200px; margin:0 auto; }
   .sec-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px; border-bottom:3px solid var(--ink); padding-bottom:10px;}
-  .sec-head h2{ font-size:42px; }
+  .sec-head h2{ font-size:clamp(30px,4vw,42px); }
   html[dir="rtl"] .sec-head h2{ font-size:28px; }
   .filters{ display:flex; gap:10px; flex-wrap:wrap; }
   .chip{
@@ -129,7 +129,8 @@
 
   /* PRODUCT GRID */
   .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  .card{ border:2px solid var(--ink); background:var(--cream-dark); position:relative; display:flex; flex-direction:column; }
+  .card{ border:2px solid var(--ink); background:var(--cream-dark); position:relative; display:flex; flex-direction:column; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; }
+  .card:hover{ transform:translateY(-3px); box-shadow:6px 6px 0 var(--ink); }
   .card-img{ aspect-ratio:1/1; background:#d8cdb2; display:flex; align-items:center; justify-content:center; font-size:60px; border-bottom:2px solid var(--ink); position:relative; overflow:hidden;}
   .card-img img{ width:100%; height:100%; object-fit:cover; }
   .badge{
@@ -195,6 +196,31 @@
     .grid{ grid-template-columns:1fr; }
     .hero h1{ font-size:52px; }
     html[dir="rtl"] .hero h1{ font-size:34px; }
+  }
+
+  /* PRODUCT DETAIL MODAL */
+  .modal-overlay{ position:fixed; inset:0; background:rgba(27,26,23,0.72); display:flex; align-items:center; justify-content:center; padding:20px; z-index:100; }
+  .modal-overlay[hidden]{ display:none; }
+  .modal{ background:var(--cream); border:3px solid var(--ink); max-width:840px; width:100%; max-height:92vh; overflow:auto; display:grid; grid-template-columns:1fr 1fr; position:relative; }
+  .modal-close{ position:absolute; top:10px; inset-inline-end:10px; width:40px; height:40px; border:2px solid var(--ink); background:var(--cream); font-size:24px; line-height:1; z-index:2; }
+  .modal-close:hover{ background:var(--brick); color:var(--cream); border-color:var(--brick); }
+  .modal-media{ aspect-ratio:1/1; background:#d8cdb2; display:flex; align-items:center; justify-content:center; font-size:96px; border-inline-end:3px solid var(--ink); position:relative; overflow:hidden; }
+  .modal-media img{ width:100%; height:100%; object-fit:cover; }
+  .modal-media .badge{ position:absolute; top:12px; inset-inline-start:12px; }
+  .modal-info{ padding:clamp(20px,3vw,30px); display:flex; flex-direction:column; gap:10px; }
+  .modal-brand{ font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#6b6656; font-weight:700; }
+  html[dir="rtl"] .modal-brand{ text-transform:none; letter-spacing:0; }
+  .modal-name{ font-size:clamp(26px,3.4vw,34px); line-height:1; }
+  .spec{ list-style:none; margin:8px 0; display:flex; flex-direction:column; gap:8px; }
+  .spec li{ display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  .spec li .k{ color:#6b6656; text-transform:uppercase; letter-spacing:0.05em; font-weight:700; font-size:12px; }
+  html[dir="rtl"] .spec li .k{ text-transform:none; letter-spacing:0; }
+  .spec li .v{ font-weight:600; text-align:end; font-size:15px; }
+  .modal-price{ font-size:26px; font-weight:700; margin-top:4px; }
+  #modalOrder{ margin-top:10px; text-align:center; width:100%; }
+  @media(max-width:640px){
+    .modal{ grid-template-columns:1fr; }
+    .modal-media{ border-inline-end:none; border-bottom:3px solid var(--ink); }
   }
 
   ::selection{ background:var(--brick); color:var(--cream); }
@@ -312,19 +338,33 @@
 
 <footer data-i="footer_text">Vinteppers — Original vintage sneakers. MVP build.</footer>
 
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div class="modal-media" id="modalMedia"></div>
+    <div class="modal-info">
+      <div class="modal-brand" id="modalBrand"></div>
+      <h3 class="modal-name disp" id="modalName"></h3>
+      <ul class="spec" id="modalSpec"></ul>
+      <div class="modal-price" id="modalPrice"></div>
+      <button class="btn btn-solid" id="modalOrder"></button>
+    </div>
+  </div>
+</div>
+
 <script>
 const TELEGRAM_USERNAME = "vinteppers_admin"; // TODO: replace with real admin username
 
 const products = [
-  {id:1, brand:"Converse", name:"Chuck 70 Hi", nameFa:"چاک ۷۰ های", category:"used", condition:"Like New", conditionFa:"مثل نو", price:1450000, sizeRange:"38-44", image:"./src/photo_2026-09-11_13-12-07.jpg"},
-  {id:2, brand:"Vans", name:"Old Skool Black/White", nameFa:"اولد اسکول مشکی سفید", category:"new", condition:"New", conditionFa:"نو", price:2100000, sizeRange:"36-45", image:"./src/photo_2026-09-11_13-12-31.jpg"},
-  {id:3, brand:"Converse", name:"Jack Purcell", nameFa:"جک پرسل", category:"used", condition:"Good", conditionFa:"خوب", price:980000, sizeRange:"39-43", image:"./src/photo_2026-09-11_13-12-35.jpg"},
-  {id:4, brand:"Vans", name:"Sk8-Hi Reissue", nameFa:"اسکیت‌های ری‌ایشو", category:"new", condition:"New", conditionFa:"نو", price:2350000, sizeRange:"37-44", image:"./src/photo_2026-09-12_15-03-55.jpg"},
-  {id:5, brand:"Converse", name:"Chuck Taylor '70 Low", nameFa:"چاک تیلور ۷۰ لو", category:"used", condition:"Fair", conditionFa:"قابل قبول", price:650000, sizeRange:"38-42", image:"./src/photo_2026-09-12_15-09-55.jpg"},
-  {id:6, brand:"Vans", name:"Authentic Checkerboard", nameFa:"آتنتیک شطرنجی", category:"used", condition:"Like New", conditionFa:"مثل نو", price:1200000, sizeRange:"36-43", image:"./src/photo_2026-09-12_15-09-58.jpg"},
-  {id:7, brand:"Converse", name:"One Star Suede", nameFa:"وان استار سوئد", category:"new", condition:"New", conditionFa:"نو", price:1980000, sizeRange:"39-44", image:"./src/photo_2026-09-13_13-11-01.jpg"},
-  {id:8, brand:"Vans", name:"Slip-On Retro", nameFa:"اسلیپ آن رترو", category:"used", condition:"Good", conditionFa:"خوب", price:890000, sizeRange:"37-42", image:"./src/photo_2026-09-14_14-07-46.jpg"},
-  {id:9, brand:"Converse", name:"Run Star Hike", nameFa:"ران استار هایک", category:"new", condition:"New", conditionFa:"نو", price:2600000, sizeRange:"38-44", image:"./src/photo_2024-06-26_12-45-20.jpg"},
+  {id:1, brand:"Converse", name:"Chuck 70 Hi", nameFa:"چاک ۷۰ های", category:"used", condition:"Like New", conditionFa:"مثل نو", color:"Black", colorFa:"مشکی", price:1450000, sizeRange:"38-44", image:"./src/photo_2026-09-11_13-12-07.jpg"},
+  {id:2, brand:"Vans", name:"Old Skool Black/White", nameFa:"اولد اسکول مشکی سفید", category:"new", condition:"New", conditionFa:"نو", color:"Black / White", colorFa:"مشکی سفید", price:2100000, sizeRange:"36-45", image:"./src/photo_2026-09-11_13-12-31.jpg"},
+  {id:3, brand:"Converse", name:"Jack Purcell", nameFa:"جک پرسل", category:"used", condition:"Good", conditionFa:"خوب", color:"Off-White", colorFa:"سفید شکری", price:980000, sizeRange:"39-43", image:"./src/photo_2026-09-11_13-12-35.jpg"},
+  {id:4, brand:"Vans", name:"Sk8-Hi Reissue", nameFa:"اسکیت‌های ری‌ایشو", category:"new", condition:"New", conditionFa:"نو", color:"Black / White", colorFa:"مشکی سفید", price:2350000, sizeRange:"37-44", image:"./src/photo_2026-09-12_15-03-55.jpg"},
+  {id:5, brand:"Converse", name:"Chuck Taylor '70 Low", nameFa:"چاک تیلور ۷۰ لو", category:"used", condition:"Fair", conditionFa:"قابل قبول", color:"Parchment", colorFa:"کرم", price:650000, sizeRange:"38-42", image:"./src/photo_2026-09-12_15-09-55.jpg"},
+  {id:6, brand:"Vans", name:"Authentic Checkerboard", nameFa:"آتنتیک شطرنجی", category:"used", condition:"Like New", conditionFa:"مثل نو", color:"Black / White", colorFa:"مشکی سفید", price:1200000, sizeRange:"36-43", image:"./src/photo_2026-09-12_15-09-58.jpg"},
+  {id:7, brand:"Converse", name:"One Star Suede", nameFa:"وان استار سوئد", category:"new", condition:"New", conditionFa:"نو", color:"Navy Suede", colorFa:"جیر سرمه‌ای", price:1980000, sizeRange:"39-44", image:"./src/photo_2026-09-13_13-11-01.jpg"},
+  {id:8, brand:"Vans", name:"Slip-On Retro", nameFa:"اسلیپ آن رترو", category:"used", condition:"Good", conditionFa:"خوب", color:"Red / White", colorFa:"قرمز سفید", price:890000, sizeRange:"37-42", image:"./src/photo_2026-09-14_14-07-46.jpg"},
+  {id:9, brand:"Converse", name:"Run Star Hike", nameFa:"ران استار هایک", category:"new", condition:"New", conditionFa:"نو", color:"Black", colorFa:"مشکی", price:2600000, sizeRange:"38-44", image:"./src/photo_2024-06-26_12-45-20.jpg"},
 ];
 
 const dict = {
@@ -349,7 +389,8 @@ const dict = {
     select_default:"Choose a pair (optional)",
     form_alert_name:"Please enter your name and phone number.",
     tg_intro:"New order from Vinteppers website:",
-    tg_name:"Name", tg_phone:"Phone", tg_product:"Product", tg_size:"Size", tg_address:"Address", tg_notes:"Notes"
+    tg_name:"Name", tg_phone:"Phone", tg_product:"Product", tg_size:"Size", tg_address:"Address", tg_notes:"Notes",
+    detail_condition:"Condition", detail_color:"Color", detail_category:"Type", detail_sizes:"Available sizes", detail_order:"Order this pair"
   },
   fa: {
     nav_shop:"فروشگاه", nav_about:"درباره ما", nav_order:"سفارش", nav_contact:"تماس",
@@ -372,7 +413,8 @@ const dict = {
     select_default:"یه جفت انتخاب کن (اختیاری)",
     form_alert_name:"لطفاً اسم و شماره تماس رو وارد کن.",
     tg_intro:"سفارش جدید از وب‌سایت وینتپرز:",
-    tg_name:"نام", tg_phone:"تماس", tg_product:"محصول", tg_size:"سایز", tg_address:"آدرس", tg_notes:"توضیحات"
+    tg_name:"نام", tg_phone:"تماس", tg_product:"محصول", tg_size:"سایز", tg_address:"آدرس", tg_notes:"توضیحات",
+    detail_condition:"وضعیت", detail_color:"رنگ", detail_category:"نوع", detail_sizes:"سایزهای موجود", detail_order:"سفارش این جفت"
   }
 };
 
@@ -432,7 +474,9 @@ function renderGrid(){
         </div>
       </div>
     `;
-    card.querySelector(".buy").onclick = ()=>{
+    card.onclick = ()=> openDetail(p);
+    card.querySelector(".buy").onclick = (e)=>{
+      e.stopPropagation();
       document.getElementById("f_product").value = p.id;
       document.getElementById("order").scrollIntoView({behavior:"smooth"});
     };
@@ -492,6 +536,48 @@ document.getElementById("orderForm").addEventListener("submit", function(e){
   const text = encodeURIComponent(msgLines.join("\n"));
   window.open(`https://t.me/${TELEGRAM_USERNAME}?text=${text}`, "_blank");
 });
+
+// ---- Product detail modal ----
+let detailProduct = null;
+
+function openDetail(p){
+  detailProduct = p;
+  const name = lang==="fa" ? p.nameFa : p.name;
+  const cond = lang==="fa" ? p.conditionFa : p.condition;
+  const color = lang==="fa" ? p.colorFa : p.color;
+  const cat = p.category==="new" ? t("badge_new") : t("badge_used");
+
+  document.getElementById("modalMedia").innerHTML =
+    `<span class="badge ${p.category}">${cat}</span>` +
+    `<img src="${p.image}" alt="${p.brand} ${name}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'👟',style:'font-size:96px'}))">`;
+  document.getElementById("modalBrand").textContent = p.brand;
+  document.getElementById("modalName").textContent = name;
+  document.getElementById("modalSpec").innerHTML = [
+    [t("detail_condition"), cond],
+    [t("detail_color"), color],
+    [t("detail_category"), cat],
+    [t("detail_sizes"), p.sizeRange]
+  ].map(([k,v])=>`<li><span class="k">${k}</span><span class="v">${v}</span></li>`).join("");
+  document.getElementById("modalPrice").textContent = `${formatPrice(p.price)} ${t("currency")}`;
+  document.getElementById("modalOrder").textContent = t("detail_order");
+
+  document.getElementById("modalOverlay").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeDetail(){
+  document.getElementById("modalOverlay").hidden = true;
+  document.body.style.overflow = "";
+}
+
+document.getElementById("modalClose").onclick = closeDetail;
+document.getElementById("modalOverlay").onclick = (e)=>{ if(e.target.id==="modalOverlay") closeDetail(); };
+document.getElementById("modalOrder").onclick = ()=>{
+  if(detailProduct){ document.getElementById("f_product").value = detailProduct.id; }
+  closeDetail();
+  document.getElementById("order").scrollIntoView({behavior:"smooth"});
+};
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeDetail(); });
 
 renderAll();
 </script>
