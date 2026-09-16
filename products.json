@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "brand": "Converse",
+    "name": "Chuck 70 Hi",
+    "nameFa": "چاک ۷۰ های",
+    "category": "used",
+    "condition": "Like New",
+    "conditionFa": "مثل نو",
+    "price": 1450000,
+    "sizeRange": "38-44",
+    "image": "./src/photo_2026-09-11_13-12-07.jpg"
+  },
+  {
+    "id": 2,
+    "brand": "Vans",
+    "name": "Old Skool Black/White",
+    "nameFa": "اولد اسکول مشکی سفید",
+    "category": "new",
+    "condition": "New",
+    "conditionFa": "نو",
+    "price": 2100000,
+    "sizeRange": "36-45",
+    "image": "./src/photo_2026-09-11_13-12-31.jpg"
+  },
+  {
+    "id": 3,
+    "brand": "Converse",
+    "name": "Jack Purcell",
+    "nameFa": "جک پرسل",
+    "category": "used",
+    "condition": "Good",
+    "conditionFa": "خوب",
+    "price": 980000,
+    "sizeRange": "39-43",
+    "image": "./src/photo_2026-09-11_13-12-35.jpg"
+  },
+  {
+    "id": 4,
+    "brand": "Vans",
+    "name": "Sk8-Hi Reissue",
+    "nameFa": "اسکیت‌های ری‌ایشو",
+    "category": "new",
+    "condition": "New",
+    "conditionFa": "نو",
+    "price": 2350000,
+    "sizeRange": "37-44",
+    "image": "./src/photo_2026-09-12_15-03-55.jpg"
+  },
+  {
+    "id": 5,
+    "brand": "Converse",
+    "name": "Chuck Taylor '70 Low",
+    "nameFa": "چاک تیلور ۷۰ لو",
+    "category": "used",
+    "condition": "Fair",
+    "conditionFa": "قابل قبول",
+    "price": 650000,
+    "sizeRange": "38-42",
+    "image": "./src/photo_2026-09-12_15-09-55.jpg"
+  },
+  {
+    "id": 6,
+    "brand": "Vans",
+    "name": "Authentic Checkerboard",
+    "nameFa": "آتنتیک شطرنجی",
+    "category": "used",
+    "condition": "Like New",
+    "conditionFa": "مثل نو",
+    "price": 1200000,
+    "sizeRange": "36-43",
+    "image": "./src/photo_2026-09-12_15-09-58.jpg"
+  },
+  {
+    "id": 7,
+    "brand": "Converse",
+    "name": "One Star Suede",
+    "nameFa": "وان استار سوئد",
+    "category": "new",
+    "condition": "New",
+    "conditionFa": "نو",
+    "price": 1980000,
+    "sizeRange": "39-44",
+    "image": "./src/photo_2026-09-13_13-11-01.jpg"
+  },
+  {
+    "id": 8,
+    "brand": "Vans",
+    "name": "Slip-On Retro",
+    "nameFa": "اسلیپ آن رترو",
+    "category": "used",
+    "condition": "Good",
+    "conditionFa": "خوب",
+    "price": 890000,
+    "sizeRange": "37-42",
+    "image": "./src/photo_2026-09-14_14-07-46.jpg"
+  },
+  {
+    "id": 9,
+    "brand": "Converse",
+    "name": "Run Star Hike",
+    "nameFa": "ران استار هایک",
+    "category": "new",
+    "condition": "New",
+    "conditionFa": "نو",
+    "price": 2600000,
+    "sizeRange": "38-44",
+    "image": "./src/photo_2024-06-26_12-45-20.jpg"
+  }
+]
